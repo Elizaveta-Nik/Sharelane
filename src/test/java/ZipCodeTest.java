@@ -70,7 +70,7 @@ public class ZipCodeTest {
         browser.findElement(By.name("zip_code")).sendKeys("12345");
         browser.findElement(By.cssSelector("[value = Continue]")).click();
         String currentUrl = browser.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("register"));
+        Assert.assertTrue(currentUrl.contains("register.py?page=1"));
         browser.quit();
     }
 
