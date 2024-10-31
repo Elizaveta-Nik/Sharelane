@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -8,6 +9,12 @@ public class DiscountTest {
 
     WebDriver driver = new ChromeDriver();
 
+    @AfterTest
+    public void driverOut() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     private String register() {
         driver.get("https://www.sharelane.com/cgi-bin/register.py");
@@ -54,7 +61,7 @@ public class DiscountTest {
         SoftAssert softAssert = new SoftAssert();
 
         addBookToShoppingCart(driver, "19");
-        discountPercent(softAssert,"0", "0.0", "190.0");
+        discountPercent(softAssert, "0", "0.0", "190.0");
 
         softAssert.assertAll();
     }
@@ -85,7 +92,6 @@ public class DiscountTest {
         discountPercent(softAssert, "3", "29.7", "960.3");
 
         softAssert.assertAll();
-
     }
 
     @Test
